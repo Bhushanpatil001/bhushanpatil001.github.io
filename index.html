@@ -2,26 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Bhushan Patil | Futuristic Full Stack Engineer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhushan Patil | Full Stack Engineer</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Animated Background Canvas -->
+    <!-- Animated Background -->
     <canvas id="bg-canvas"></canvas>
-    
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
 
     <!-- Navigation -->
     <nav class="glass-nav">
         <div class="nav-container">
             <div class="logo">
                 <span class="logo-text">BP</span>
-                <div class="logo-glow"></div>
             </div>
             <div class="nav-links">
                 <a href="#home" class="nav-link active">Home</a>
@@ -40,27 +35,19 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-badge">
-                <span class="badge-glow"></span>
                 <i class="fas fa-code"></i> Full Stack Engineer
             </div>
             <h1 class="hero-title">
-                <span class="title-line">Bhushan</span>
-                <span class="title-line gradient-text">Patil</span>
+                <span>Bhushan</span>
+                <span class="gradient-text">Patil</span>
             </h1>
             <div class="hero-typing">
                 <span class="typing-text"></span>
-                <span class="cursor-blink">|</span>
             </div>
             <p class="hero-desc">Building scalable MERN applications with performance, security, and futuristic design. 1.5+ years of turning ideas into reality.</p>
             <div class="hero-buttons">
-                <a href="#projects" class="btn-primary">
-                    <span>View Work</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="#contact" class="btn-secondary">
-                    <i class="fas fa-paper-plane"></i>
-                    <span>Contact Me</span>
-                </a>
+                <a href="#projects" class="btn-primary">View Work <i class="fas fa-arrow-right"></i></a>
+                <a href="#contact" class="btn-secondary">Contact Me <i class="fas fa-paper-plane"></i></a>
             </div>
             <div class="hero-stats">
                 <div class="stat">
@@ -69,10 +56,10 @@
                 </div>
                 <div class="stat">
                     <div class="stat-number" data-target="15">0</div>
-                    <div class="stat-label">Projects Completed</div>
+                    <div class="stat-label">Projects</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number" data-target="99.9">0</div>
+                    <div class="stat-number" data-target="99">0</div>
                     <div class="stat-label">Uptime %</div>
                 </div>
             </div>
@@ -89,10 +76,6 @@
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <div class="mouse"></div>
-            <div class="scroll-text">Scroll</div>
-        </div>
     </section>
 
     <!-- Experience Section -->
@@ -101,14 +84,12 @@
             <div class="section-header">
                 <div class="section-tag">My Journey</div>
                 <h2 class="section-title">Work <span class="gradient-text">Experience</span></h2>
-                <div class="section-line"></div>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">2024 - Present</div>
-                    <div class="timeline-card glass-card">
-                        <div class="card-icon"><i class="fab fa-react"></i></div>
+                    <div class="timeline-card">
                         <h3>Junior MERN Stack Developer</h3>
                         <h4>AlgoScript Software Pvt. Ltd. · Surat, India</h4>
                         <ul>
@@ -130,44 +111,31 @@
             <div class="section-header">
                 <div class="section-tag">Portfolio</div>
                 <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
-                <div class="section-line"></div>
             </div>
             <div class="projects-grid">
-                <div class="project-card glass-card" data-tilt>
+                <div class="project-card">
                     <div class="project-icon">📱</div>
                     <h3>Social Media Downloader Hub</h3>
                     <div class="project-tech">
                         <span>React</span><span>Node.js</span><span>REST API</span><span>SEO</span>
                     </div>
-                    <p>Multi-platform media downloader with programmatic SEO (10k+ pages) and AI-powered metadata extraction. Monetization via ad-gating system.</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
-                    </div>
+                    <p>Multi-platform media downloader with programmatic SEO (10k+ pages) and AI-powered metadata extraction.</p>
                 </div>
-                <div class="project-card glass-card" data-tilt>
+                <div class="project-card">
                     <div class="project-icon">📊</div>
                     <h3>Smart AdPilot CMS</h3>
                     <div class="project-tech">
                         <span>Next.js</span><span>Node.js</span><span>MongoDB</span><span>AI</span>
                     </div>
-                    <p>CMS dashboard with role-based access (Super Admin, Admin, Partner) and AI content generation pipeline producing full articles + SEO from one prompt.</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
-                    </div>
+                    <p>CMS dashboard with role-based access and AI content generation pipeline producing full articles from one prompt.</p>
                 </div>
-                <div class="project-card glass-card" data-tilt>
+                <div class="project-card">
                     <div class="project-icon">📅</div>
                     <h3>BookMyService</h3>
                     <div class="project-tech">
                         <span>React</span><span>Node.js</span><span>Stripe</span><span>MongoDB</span>
                     </div>
-                    <p>Full-stack booking platform with dynamic pricing, real-time workflows, and secure Stripe payment integration for users, providers, and admins.</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
-                    </div>
+                    <p>Full-stack booking platform with dynamic pricing, real-time workflows, and secure Stripe payments.</p>
                 </div>
             </div>
         </div>
@@ -179,10 +147,9 @@
             <div class="section-header">
                 <div class="section-tag">Expertise</div>
                 <h2 class="section-title">Tech <span class="gradient-text">Stack</span></h2>
-                <div class="section-line"></div>
             </div>
             <div class="skills-container">
-                <div class="skill-category glass-card">
+                <div class="skill-category">
                     <h3><i class="fas fa-code"></i> Frontend</h3>
                     <div class="skill-items">
                         <div class="skill-item" data-skill="95">React.js</div>
@@ -191,7 +158,7 @@
                         <div class="skill-item" data-skill="85">HTML5/CSS3</div>
                     </div>
                 </div>
-                <div class="skill-category glass-card">
+                <div class="skill-category">
                     <h3><i class="fas fa-server"></i> Backend</h3>
                     <div class="skill-items">
                         <div class="skill-item" data-skill="92">Node.js</div>
@@ -200,16 +167,16 @@
                         <div class="skill-item" data-skill="82">WebSockets</div>
                     </div>
                 </div>
-                <div class="skill-category glass-card">
+                <div class="skill-category">
                     <h3><i class="fas fa-database"></i> Database</h3>
                     <div class="skill-items">
                         <div class="skill-item" data-skill="90">MongoDB</div>
                         <div class="skill-item" data-skill="85">Mongoose</div>
-                        <div class="skill-item" data-skill="80">Indexing/Aggregation</div>
+                        <div class="skill-item" data-skill="80">Aggregation</div>
                     </div>
                 </div>
-                <div class="skill-category glass-card">
-                    <h3><i class="fas fa-cloud"></i> DevOps & Tools</h3>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> DevOps</h3>
                     <div class="skill-items">
                         <div class="skill-item" data-skill="85">Git/GitHub</div>
                         <div class="skill-item" data-skill="80">Nginx/VPS</div>
@@ -227,79 +194,47 @@
             <div class="section-header">
                 <div class="section-tag">Get In Touch</div>
                 <h2 class="section-title">Let's Work <span class="gradient-text">Together</span></h2>
-                <div class="section-line"></div>
             </div>
             <div class="contact-container">
-                <div class="contact-info glass-card">
+                <div class="contact-info">
                     <h3>Contact Info</h3>
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <p>1bushanpatil0117@gmail.com</p>
-                            </div>
+                            <div><h4>Email</h4><p>1bushanpatil0117@gmail.com</p></div>
                         </div>
                         <div class="contact-item">
                             <i class="fab fa-github"></i>
-                            <div>
-                                <h4>GitHub</h4>
-                                <p>github.com/Bhushanpatil001</p>
-                            </div>
+                            <div><h4>GitHub</h4><p>github.com/Bhushanpatil001</p></div>
                         </div>
                         <div class="contact-item">
                             <i class="fab fa-linkedin"></i>
-                            <div>
-                                <h4>LinkedIn</h4>
-                                <p>linkedin.com/in/bhushanpatil017</p>
-                            </div>
+                            <div><h4>LinkedIn</h4><p>linkedin.com/in/bhushanpatil017</p></div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>+91-8329143496</p>
-                            </div>
+                            <div><h4>Phone</h4><p>+91-8329143496</p></div>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form glass-card" id="contact-form">
+                <form class="contact-form" id="contact-form">
                     <h3>Send a Message</h3>
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary">
-                        <span>Send Message</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
+                    <input type="text" id="name" placeholder="Your Name" required>
+                    <input type="email" id="email" placeholder="Your Email" required>
+                    <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="gradient-text">Bhushan Patil</span>
-                    <p>Full Stack Engineer</p>
-                </div>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-                <div class="footer-copyright">
-                    <p>&copy; 2024 Bhushan Patil. All rights reserved.</p>
-                </div>
+            <p>© 2024 Bhushan Patil. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </footer>
