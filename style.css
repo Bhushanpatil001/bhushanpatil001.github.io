@@ -2044,3 +2044,711 @@ section {
         gap: 0.8rem;
     }
 }
+
+/* ==========================================================================
+   FUTURISTIC ADVANCED HUD & THEME ENGINE STYLES (NEW)
+   ========================================================================== */
+
+/* 1. Theme Override Class Systems */
+body.theme-matrix-green {
+    --neon-cyan: #00ff66;
+    --neon-cyan-glow: rgba(0, 255, 102, 0.45);
+    --neon-purple: #00aa33;
+    --neon-purple-glow: rgba(0, 170, 51, 0.35);
+    --neon-blue: #0ea5e9;
+    --neon-blue-glow: rgba(14, 165, 233, 0.4);
+    --bg-primary: #020803;
+    --bg-secondary: #041407;
+    --bg-tertiary: #08220c;
+    --border-color: rgba(0, 255, 102, 0.18);
+    --card-shadow: rgba(0, 255, 102, 0.05);
+    --glass-bg: rgba(4, 20, 7, 0.85);
+    --glass-border: 1px solid rgba(0, 255, 102, 0.2);
+}
+
+body.theme-cyberpunk-yellow {
+    --neon-cyan: #ffdd00;
+    --neon-cyan-glow: rgba(255, 221, 0, 0.45);
+    --neon-purple: #f43f5e;
+    --neon-purple-glow: rgba(244, 63, 94, 0.45);
+    --neon-blue: #a855f7;
+    --neon-blue-glow: rgba(168, 85, 247, 0.4);
+    --bg-primary: #0a030f;
+    --bg-secondary: #160621;
+    --bg-tertiary: #270b3a;
+    --border-color: rgba(255, 221, 0, 0.18);
+    --card-shadow: rgba(255, 221, 0, 0.05);
+    --glass-bg: rgba(22, 6, 33, 0.85);
+    --glass-border: 1px solid rgba(255, 221, 0, 0.2);
+}
+
+/* 2. HUD Settings Toggle Control */
+.hud-control-toggle {
+    position: fixed;
+    bottom: 110px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: var(--glass-border);
+    backdrop-filter: var(--glass-blur);
+    color: var(--neon-cyan);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    z-index: 998;
+    box-shadow: 0 0 15px var(--neon-cyan-glow);
+    transition: var(--transition-smooth);
+    animation: floatingHudToggle 4s ease-in-out infinite;
+}
+
+.hud-control-toggle:hover {
+    color: #000;
+    background: var(--neon-cyan);
+    box-shadow: 0 0 25px var(--neon-cyan);
+    transform: rotate(45deg) scale(1.1);
+}
+
+.hud-toggle-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--neon-cyan);
+    opacity: 0.8;
+    animation: hudPulseRing 2s linear infinite;
+    pointer-events: none;
+}
+
+/* 3. Sliding HUD Settings Panel */
+.hud-settings-panel {
+    position: fixed;
+    top: 100px;
+    right: -420px;
+    width: 380px;
+    max-height: calc(100vh - 140px);
+    background: rgba(4, 9, 20, 0.95);
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
+    border-radius: 12px;
+    z-index: 997;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), 0 0 20px var(--neon-cyan-glow);
+    transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+.hud-settings-panel.open {
+    right: 30px;
+}
+
+.hud-panel-header {
+    background: rgba(8, 16, 32, 0.98);
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hud-panel-title {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--neon-cyan);
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px var(--neon-cyan-glow);
+}
+
+.hud-panel-close {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    transition: var(--transition-smooth);
+}
+
+.hud-panel-close:hover {
+    color: var(--neon-red);
+    text-shadow: 0 0 8px var(--neon-red);
+}
+
+.hud-panel-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.hud-section {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding-bottom: 1.2rem;
+}
+
+.hud-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.hud-section-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--neon-purple);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.hud-control-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.hud-control-row:last-child {
+    margin-bottom: 0;
+}
+
+.hud-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-main);
+}
+
+/* 4. Elegant Cyber Switches */
+.cyber-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 22px;
+}
+
+.cyber-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    transition: .3s;
+}
+
+.switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--color-text-muted);
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.cyber-switch input:checked + .switch-slider {
+    background-color: rgba(0, 242, 254, 0.1);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 10px var(--neon-cyan-glow);
+}
+
+.cyber-switch input:checked + .switch-slider:before {
+    transform: translateX(22px);
+    background-color: var(--neon-cyan);
+    box-shadow: 0 0 8px var(--neon-cyan);
+}
+
+/* Theme Button Grids */
+.theme-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+}
+
+.theme-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    color: var(--color-text-main);
+    padding: 0.6rem 1rem;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: var(--transition-smooth);
+}
+
+.theme-btn:hover {
+    border-color: var(--btn-color);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.theme-btn.active {
+    border-color: var(--btn-color);
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--btn-color);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.05);
+}
+
+.theme-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--btn-color);
+    display: inline-block;
+}
+
+/* Audio visualizer bar */
+.audio-wave-visualizer {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 25px;
+    padding: 5px 0;
+}
+
+.audio-wave-visualizer .bar {
+    width: 4px;
+    height: 4px;
+    background-color: var(--neon-cyan);
+    border-radius: 2px;
+    transition: height 0.15s ease;
+}
+
+.audio-wave-visualizer.playing .bar {
+    animation: audioWaveBounce 1.2s ease-in-out infinite;
+}
+
+.audio-wave-visualizer.playing .bar:nth-child(1) { animation-delay: 0.1s; }
+.audio-wave-visualizer.playing .bar:nth-child(2) { animation-delay: 0.3s; }
+.audio-wave-visualizer.playing .bar:nth-child(3) { animation-delay: 0.5s; }
+.audio-wave-visualizer.playing .bar:nth-child(4) { animation-delay: 0.2s; }
+.audio-wave-visualizer.playing .bar:nth-child(5) { animation-delay: 0.4s; }
+
+.hud-panel-footer {
+    background: rgba(8, 16, 32, 0.95);
+    padding: 0.8rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+}
+
+.system-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 5. Holographic Decryption Game Modal Overlay */
+.hacking-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(2, 4, 8, 0.96);
+    backdrop-filter: blur(15px);
+    z-index: 10005;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.hacking-modal.open {
+    display: flex;
+}
+
+.hacking-modal-content {
+    width: 100%;
+    max-width: 950px;
+    background: rgba(4, 9, 20, 0.9);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 12px;
+    box-shadow: 0 0 35px var(--neon-cyan-glow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: hackScanlines 0.2s infinite, screenFlicker 0.15s infinite alternate;
+}
+
+.hacking-header {
+    background: rgba(8, 16, 32, 0.98);
+    padding: 1.2rem 2rem;
+    border-bottom: 1px solid var(--neon-cyan);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hacking-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--neon-cyan);
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--neon-cyan-glow);
+}
+
+.hacking-timer {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--neon-purple);
+    font-weight: bold;
+    text-shadow: 0 0 8px var(--neon-purple-glow);
+}
+
+.hacking-body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.hacking-instructions {
+    background: rgba(0, 242, 254, 0.03);
+    border: 1px dashed var(--border-color);
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+}
+
+.hacking-instructions p {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 0.4rem;
+}
+
+.hacking-workspace {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr 1fr;
+    gap: 1.5rem;
+    min-height: 280px;
+}
+
+.hacking-hex-column {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: rgba(0, 242, 254, 0.65);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 242, 254, 0.1);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-y: hidden;
+    line-height: 1.5;
+}
+
+.hacking-choices-column {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 242, 254, 0.15);
+    border-radius: 6px;
+    padding: 1.2rem;
+    overflow-y: auto;
+}
+
+.hacking-grid-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.hacking-grid-wrapper span {
+    padding: 1px 3px;
+    transition: all 0.1s ease;
+}
+
+.hacking-grid-wrapper span.hex-word {
+    color: var(--neon-cyan);
+    font-weight: bold;
+    cursor: none;
+}
+
+.hacking-grid-wrapper span.hex-word:hover {
+    background: var(--neon-cyan);
+    color: #000;
+    box-shadow: 0 0 8px var(--neon-cyan);
+}
+
+.hacking-console-column {
+    border: 1px solid rgba(0, 242, 254, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.hacking-console-column .console-title {
+    background: rgba(8, 16, 32, 0.9);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--neon-purple);
+    border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+}
+
+.console-feed {
+    padding: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--neon-cyan);
+    overflow-y: auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.console-feed .feed-line {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    padding-bottom: 3px;
+}
+
+.console-feed .feed-line.feed-success {
+    color: var(--neon-green);
+}
+
+.console-feed .feed-line.feed-error {
+    color: var(--neon-red);
+}
+
+.hacking-input-row {
+    display: flex;
+    align-items: center;
+    background: rgba(8, 16, 32, 0.95);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.8rem 1.5rem;
+    gap: 1rem;
+}
+
+.prompt-arrow {
+    color: var(--neon-cyan);
+    font-family: var(--font-mono);
+    font-weight: bold;
+}
+
+.selected-word-preview {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 5px var(--neon-cyan-glow);
+    flex-grow: 1;
+}
+
+.attempts-indicator {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-main);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot-attempt {
+    width: 8px;
+    height: 8px;
+    background: var(--neon-cyan);
+    box-shadow: 0 0 6px var(--neon-cyan);
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.dot-attempt.spent {
+    background: #444 !important;
+    box-shadow: none !important;
+}
+
+.hacking-footer {
+    background: rgba(8, 16, 32, 0.95);
+    padding: 1rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Lockout screen aesthetic */
+.lockout-message {
+    text-align: center;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.lockout-icon {
+    font-size: 4rem;
+    color: var(--neon-red);
+    text-shadow: 0 0 15px var(--neon-red);
+    animation: errorPulse 1s infinite alternate;
+}
+
+.lockout-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--neon-red);
+}
+
+.lockout-desc {
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    max-width: 450px;
+}
+
+/* Decryption Success Panel */
+.decrypt-success-panel {
+    text-align: center;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.success-icon {
+    font-size: 4.5rem;
+    color: var(--neon-green);
+    text-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
+    animation: successBounce 1.5s infinite ease-in-out;
+}
+
+.success-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--neon-green);
+}
+
+.success-desc {
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    max-width: 500px;
+    line-height: 1.5;
+}
+
+.classified-briefing-box {
+    margin-top: 1.5rem;
+    background: rgba(34, 197, 94, 0.05);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    max-width: 520px;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.1);
+}
+
+.briefing-header {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    color: var(--neon-green);
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+}
+
+.briefing-btn {
+    margin-top: 1rem;
+    background: var(--neon-green) !important;
+    border-color: var(--neon-green) !important;
+    color: #000 !important;
+    font-weight: 900 !important;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.4) !important;
+}
+
+.briefing-btn:hover {
+    box-shadow: 0 0 25px rgba(34, 197, 94, 0.8) !important;
+    transform: translateY(-3px);
+}
+
+/* Screenshake class */
+.screenshake {
+    animation: screenshakeAnim 0.3s linear;
+}
+
+/* 6. Animations keyframes */
+@keyframes floatingHudToggle {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes hudPulseRing {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes audioWaveBounce {
+    0% { height: 4px; }
+    50% { height: 22px; }
+    100% { height: 4px; }
+}
+
+@keyframes screenshakeAnim {
+    0%, 100% { transform: translate(0, 0); }
+    10%, 30%, 50%, 70%, 90% { transform: translate(-8px, -4px); }
+    20%, 40%, 60%, 80% { transform: translate(8px, 4px); }
+}
+
+@keyframes errorPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 5px var(--neon-red)); }
+    100% { transform: scale(1.08); filter: drop-shadow(0 0 20px var(--neon-red)); }
+}
+
+@keyframes successBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes screenFlicker {
+    0% { opacity: 0.985; }
+    100% { opacity: 1; }
+}
+
+/* Responsive modal sizing overrides */
+@media (max-width: 900px) {
+    .hacking-workspace {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        min-height: auto;
+    }
+    .hacking-hex-column {
+        display: none; /* Hide scrolling hex column on tablet/mobile to preserve space */
+    }
+    .hacking-modal-content {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    .hud-settings-panel {
+        width: 100%;
+        max-height: 100vh;
+        top: 0;
+        right: -100%;
+        border-radius: 0;
+    }
+    .hud-settings-panel.open {
+        right: 0;
+    }
+}

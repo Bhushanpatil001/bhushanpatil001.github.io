@@ -324,8 +324,9 @@ document.addEventListener('DOMContentLoaded', () => {
   <span class="term-prompt">/skills</span>     - Renders engineer's primary technological nodes
   <span class="term-prompt">/projects</span>   - Deploys repository links of completed builds
   <span class="term-prompt">/contact</span>    - Print transmission links & activate packet routes
-  <span class="term-prompt">/clear</span>     - Purge terminal records database
-  <span class="term-prompt">/help</span>      - Display protocol list
+  <span class="term-prompt">/hack</span>       - Initiates level 4 firewall decryption mini-game
+  <span class="term-prompt">/clear</span>      - Purge terminal records database
+  <span class="term-prompt">/help</span>       - Display protocol list
 `,
         '/about': `
 <span class="term-highlight">SUBJECT BIOGRAPHY: BHUSHAN PATIL</span>
@@ -362,6 +363,16 @@ document.addEventListener('DOMContentLoaded', () => {
   * LINKEDIN: linkedin.com/in/bhushanpatil017
   
   <span class="term-system">[SYSTEM] Focus active: Secure Form input initialized.</span>
+`,
+        '/hack': `
+<span class="term-system">[SYSTEM] Initializing firewall bypass sequence...</span>
+  * Status: Handshake completed.
+  * Launching **Cognitive Decryption interface** overlay.
+`,
+        '/decrypt': `
+<span class="term-system">[SYSTEM] Initializing firewall bypass sequence...</span>
+  * Status: Handshake completed.
+  * Launching **Cognitive Decryption interface** overlay.
 `
     };
 
@@ -401,6 +412,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (lowerCmd === '/contact') {
                     const formName = document.getElementById('name');
                     if (formName) formName.focus();
+                }
+                
+                // Trigger Hacking game
+                if (lowerCmd === '/hack' || lowerCmd === '/decrypt') {
+                    setTimeout(() => {
+                        startHackingGame();
+                    }, 800);
                 }
             } else {
                 appendTerminalLine(`<span class="term-system">[ERROR]</span> Command not recognized: <span style="color:var(--neon-red)">${rawVal}</span>. Type <span class="term-highlight">/help</span> for system protocols.`);
@@ -517,5 +535,616 @@ document.addEventListener('DOMContentLoaded', () => {
                 toast.remove();
             }, 400);
         }, 4000);
+    }
+
+    /* --------------------------------------------------------------------------
+       12. TACTILE WEB AUDIO SYNTHESIZER ENGINE
+       -------------------------------------------------------------------------- */
+    let audioCtx = null;
+    let sfxEnabled = true;
+
+    // Lazy initialization of AudioContext on user interaction
+    function initAudioContext() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    // Play procedural synthesised sounds
+    function playSynthSound(type) {
+        if (!sfxEnabled) return;
+        try {
+            initAudioContext();
+            if (!audioCtx) return;
+
+            const now = audioCtx.currentTime;
+            
+            switch (type) {
+                case 'click': {
+                    // Quick mechanical sweep chirp
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(1200, now);
+                    osc.frequency.exponentialRampToValueAtTime(300, now + 0.08);
+                    
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+                    
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                    break;
+                }
+                case 'hover': {
+                    // Ultra quick sine pip
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(800, now);
+                    osc.frequency.setValueAtTime(1600, now + 0.015);
+                    
+                    gain.gain.setValueAtTime(0.03, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+                    
+                    osc.start(now);
+                    osc.stop(now + 0.03);
+                    break;
+                }
+                case 'beep': {
+                    // Flat synth pip (typing sound)
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(950, now);
+                    
+                    gain.gain.setValueAtTime(0.04, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                    
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                    break;
+                }
+                case 'error': {
+                    // Dual low saw buzzy dischord
+                    const osc1 = audioCtx.createOscillator();
+                    const osc2 = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    
+                    osc1.connect(gain);
+                    osc2.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    
+                    osc1.type = 'sawtooth';
+                    osc1.frequency.setValueAtTime(110, now);
+                    osc1.frequency.linearRampToValueAtTime(80, now + 0.25);
+                    
+                    osc2.type = 'sawtooth';
+                    osc2.frequency.setValueAtTime(115, now);
+                    osc2.frequency.linearRampToValueAtTime(83, now + 0.25);
+                    
+                    gain.gain.setValueAtTime(0.07, now);
+                    gain.gain.linearRampToValueAtTime(0.001, now + 0.25);
+                    
+                    osc1.start(now);
+                    osc2.start(now);
+                    osc1.stop(now + 0.25);
+                    osc2.stop(now + 0.25);
+                    break;
+                }
+                case 'success': {
+                    // Arpeggio rising laser sweeps
+                    const timeWindow = 0.4;
+                    const notes = [440, 554, 659, 880];
+                    notes.forEach((freq, idx) => {
+                        const playTime = now + (idx * 0.07);
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, playTime);
+                        osc.frequency.exponentialRampToValueAtTime(freq * 1.5, playTime + 0.12);
+                        
+                        gain.gain.setValueAtTime(0.06, playTime);
+                        gain.gain.exponentialRampToValueAtTime(0.001, playTime + 0.12);
+                        
+                        osc.start(playTime);
+                        osc.stop(playTime + 0.12);
+                    });
+                    break;
+                }
+                case 'sweep': {
+                    // Soft synth low filter pass sweep (opening deck)
+                    const osc = audioCtx.createOscillator();
+                    const filter = audioCtx.createBiquadFilter();
+                    const gain = audioCtx.createGain();
+                    
+                    osc.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(80, now);
+                    osc.frequency.exponentialRampToValueAtTime(320, now + 0.35);
+                    
+                    filter.type = 'lowpass';
+                    filter.Q.setValueAtTime(8, now);
+                    filter.frequency.setValueAtTime(150, now);
+                    filter.frequency.exponentialRampToValueAtTime(1200, now + 0.35);
+                    
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+                    
+                    osc.start(now);
+                    osc.stop(now + 0.35);
+                    break;
+                }
+            }
+        } catch (e) {
+            console.warn("Web Audio API not fully compatible/blocked: ", e);
+        }
+    }
+
+    // Attach mechanical sound triggers on generic hovering & clicking
+    const triggerAudioHovers = () => {
+        const audioNodes = 'a, button, input, textarea, .quick-cmd-btn, .menu-btn, .contact-node, .cyber-switch, .theme-btn';
+        document.body.addEventListener('mouseover', (e) => {
+            if (e.target.closest(audioNodes)) {
+                playSynthSound('hover');
+            }
+        });
+        document.body.addEventListener('click', (e) => {
+            if (e.target.closest(audioNodes)) {
+                playSynthSound('click');
+            }
+        });
+    };
+    triggerAudioHovers();
+
+    /* --------------------------------------------------------------------------
+       13. COGNITIVE HUD & SETTINGS INTERFACE MANAGEMENT
+       -------------------------------------------------------------------------- */
+    const hudToggle = document.getElementById('hud-toggle');
+    const hudPanel = document.getElementById('hud-panel');
+    const hudClose = document.getElementById('hud-close');
+    const sfxToggleInput = document.getElementById('sfx-toggle');
+    const waveVisualizer = document.getElementById('wave-visualizer');
+    
+    // Toggle Control deck panel open/close
+    if (hudToggle && hudPanel && hudClose) {
+        hudToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hudPanel.classList.toggle('open');
+            playSynthSound('sweep');
+        });
+        hudClose.addEventListener('click', () => {
+            hudPanel.classList.remove('open');
+            playSynthSound('click');
+        });
+        document.addEventListener('click', (e) => {
+            if (hudPanel.classList.contains('open') && !hudPanel.contains(e.target) && !hudToggle.contains(e.target)) {
+                hudPanel.classList.remove('open');
+            }
+        });
+    }
+
+    // Sound FX Switch handler
+    if (sfxToggleInput && waveVisualizer) {
+        sfxToggleInput.addEventListener('change', () => {
+            sfxEnabled = sfxToggleInput.checked;
+            if (sfxEnabled) {
+                waveVisualizer.classList.add('playing');
+                playSynthSound('success');
+            } else {
+                waveVisualizer.classList.remove('playing');
+            }
+            localStorage.setItem('cyber_sfx_enabled', sfxEnabled);
+        });
+        
+        // Cache read
+        const savedSfx = localStorage.getItem('cyber_sfx_enabled');
+        if (savedSfx !== null) {
+            sfxEnabled = savedSfx === 'true';
+            sfxToggleInput.checked = sfxEnabled;
+            if (sfxEnabled) waveVisualizer.classList.add('playing');
+            else waveVisualizer.classList.remove('playing');
+        } else {
+            waveVisualizer.classList.add('playing');
+        }
+    }
+
+    // Visual matrix overlays toggling (CRT Scanlines, noise filters)
+    const scanlinesToggle = document.getElementById('scanlines-toggle');
+    const noiseToggle = document.getElementById('noise-toggle');
+    const particlesToggle = document.getElementById('particles-toggle');
+    
+    const scanlinesOverlay = document.querySelector('.cyber-scanlines');
+    const noiseOverlay = document.querySelector('.cyber-noise');
+    const particleCanvas = document.getElementById('bg-canvas');
+
+    if (scanlinesToggle && scanlinesOverlay) {
+        scanlinesToggle.addEventListener('change', () => {
+            scanlinesOverlay.style.display = scanlinesToggle.checked ? 'block' : 'none';
+            localStorage.setItem('cyber_scanlines_show', scanlinesToggle.checked);
+        });
+        // Cache read
+        const savedScan = localStorage.getItem('cyber_scanlines_show');
+        if (savedScan !== null) {
+            scanlinesToggle.checked = savedScan === 'true';
+            scanlinesOverlay.style.display = scanlinesToggle.checked ? 'block' : 'none';
+        }
+    }
+
+    if (noiseToggle && noiseOverlay) {
+        noiseToggle.addEventListener('change', () => {
+            noiseOverlay.style.display = noiseToggle.checked ? 'block' : 'none';
+            localStorage.setItem('cyber_noise_show', noiseToggle.checked);
+        });
+        // Cache read
+        const savedNoise = localStorage.getItem('cyber_noise_show');
+        if (savedNoise !== null) {
+            noiseToggle.checked = savedNoise === 'true';
+            noiseOverlay.style.display = noiseToggle.checked ? 'block' : 'none';
+        }
+    }
+
+    if (particlesToggle && particleCanvas) {
+        particlesToggle.addEventListener('change', () => {
+            particleCanvas.style.opacity = particlesToggle.checked ? '1' : '0';
+            localStorage.setItem('cyber_particles_show', particlesToggle.checked);
+        });
+        // Cache read
+        const savedPart = localStorage.getItem('cyber_particles_show');
+        if (savedPart !== null) {
+            particlesToggle.checked = savedPart === 'true';
+            particleCanvas.style.opacity = particlesToggle.checked ? '1' : '0';
+        }
+    }
+
+    // Theme Switch Engine
+    const themeBtns = document.querySelectorAll('.theme-btn');
+    themeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            themeBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const theme = btn.getAttribute('data-theme');
+            applyMatrixTheme(theme);
+        });
+    });
+
+    function applyMatrixTheme(theme) {
+        document.body.classList.remove('theme-matrix-green', 'theme-cyberpunk-yellow');
+        
+        if (theme === 'matrix') {
+            document.body.classList.add('theme-matrix-green');
+        } else if (theme === 'cyberpunk') {
+            document.body.classList.add('theme-cyberpunk-yellow');
+        }
+        
+        localStorage.setItem('cyber_active_theme', theme);
+        playSynthSound('success');
+        showGlowNotification(`🔄 THEME INITIALIZED: Code Matrix modified to **${theme.toUpperCase()}** state.`);
+    }
+
+    // Cache Theme Load
+    const savedTheme = localStorage.getItem('cyber_active_theme');
+    if (savedTheme) {
+        applyMatrixTheme(savedTheme);
+        themeBtns.forEach(btn => {
+            if (btn.getAttribute('data-theme') === savedTheme) {
+                themeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+        });
+    }
+
+    /* --------------------------------------------------------------------------
+       14. COGNITIVE DECRYPTION MINI-GAME ENGINE
+       -------------------------------------------------------------------------- */
+    const hackingModal = document.getElementById('hacking-modal');
+    const closeHackingBtn = document.getElementById('close-hacking-btn');
+    const hudDecryptBtn = document.getElementById('hud-decrypt-btn');
+    let hackingWordGrid = document.getElementById('hacking-word-grid');
+    let hackingHexLog = document.getElementById('hacking-hex-log');
+    let hackingConsoleFeed = document.getElementById('hacking-console-feed');
+    let selectedWordPreview = document.getElementById('selected-word-preview');
+    let attemptsLeftContainer = document.getElementById('attempts-left');
+    const hackTimerDisplay = document.getElementById('hack-timer');
+
+    const GAME_WORDS = [
+        'GATEWAY', 'SECURITY', 'FIREWALL', 'DATABASE', 'PROTOCOL',
+        'TERMINAL', 'MALWARE', 'DECRYPT', 'KEYWORD', 'NETWORK',
+        'UPLINKED', 'MAINCORE', 'PHISHING', 'CYBERNET', 'SPYWARE'
+    ];
+
+    let secretKey = '';
+    let attemptsLeft = 4;
+    let gameTimer = null;
+    let timeRemaining = 45.00;
+    let gameActive = false;
+
+    // Start Decryption Hacking Modal
+    function startHackingGame() {
+        initAudioContext();
+        hackingModal.classList.add('open');
+        gameActive = true;
+        attemptsLeft = 4;
+        timeRemaining = 45.00;
+        
+        // Restore/Ensure layout is fresh
+        restoreHackingBodyHTML();
+        
+        // Reset logs and inputs
+        selectedWordPreview.textContent = 'HOVER OVER MATRIX NODE...';
+        hackingConsoleFeed.innerHTML = `
+            <div class="feed-line">> Security handshake complete.</div>
+            <div class="feed-line">> Bypassing main gate filter...</div>
+            <div class="feed-line">> Encryption complexity: level 4 detected.</div>
+        `;
+        
+        // Build Hacking HUD nodes
+        generateHackingNodes();
+        updateAttemptsUI();
+        
+        // Sound and timer
+        playSynthSound('sweep');
+        
+        // Set up Timer
+        if (gameTimer) clearInterval(gameTimer);
+        gameTimer = setInterval(() => {
+            if (!gameActive) return;
+            timeRemaining -= 0.05;
+            if (timeRemaining <= 0) {
+                timeRemaining = 0;
+                triggerHackingLockout();
+            }
+            hackTimerDisplay.textContent = `TIME_REMAINING: ${timeRemaining.toFixed(2)}s`;
+        }, 50);
+    }
+
+    // Close/Abort Hacking
+    function closeHackingGame() {
+        hackingModal.classList.remove('open');
+        gameActive = false;
+        if (gameTimer) clearInterval(gameTimer);
+        playSynthSound('click');
+    }
+
+    if (closeHackingBtn) closeHackingBtn.addEventListener('click', closeHackingGame);
+    if (hudDecryptBtn) hudDecryptBtn.addEventListener('click', startHackingGame);
+
+    // Lock game clicks if modal is clicked outside workspace
+    hackingModal.addEventListener('click', (e) => {
+        if (e.target === hackingModal) closeHackingGame();
+    });
+
+    // Generate hexadecimal scrolling stream on left
+    function generateHackingNodes() {
+        // Hex array
+        let hexHTML = '';
+        for (let i = 0; i < 18; i++) {
+            const randomHex = Math.floor(Math.random() * 65535).toString(16).toUpperCase().padStart(4, '0');
+            hexHTML += `<div>0x${randomHex}</div>`;
+        }
+        hackingHexLog.innerHTML = hexHTML;
+        
+        // Select 8-10 words
+        const shuffledWords = [...GAME_WORDS].sort(() => 0.5 - Math.random());
+        const selectedWords = shuffledWords.slice(0, 8);
+        secretKey = selectedWords[Math.floor(Math.random() * selectedWords.length)];
+        
+        // Build character matrix grid (Fallout Style)
+        const symbols = '!@#$%^&*()_+[]{}|;:,.<>?/~';
+        let gridHTML = '';
+        
+        let wordIndex = 0;
+        let charCounter = 0;
+        
+        // Generate ~250 characters scattered with our words
+        while (charCounter < 260) {
+            // Decide if we inject a word
+            if (Math.random() < 0.08 && wordIndex < selectedWords.length) {
+                const word = selectedWords[wordIndex];
+                gridHTML += `<span class="hex-word" data-word="${word}">${word}</span>`;
+                wordIndex++;
+                charCounter += word.length;
+            } else {
+                const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+                gridHTML += `<span>${symbol}</span>`;
+                charCounter++;
+            }
+        }
+        
+        hackingWordGrid.innerHTML = gridHTML;
+        
+        // Bind hover and click events to generated spans
+        const spans = hackingWordGrid.querySelectorAll('span');
+        spans.forEach(span => {
+            span.addEventListener('mouseover', (e) => {
+                if (!gameActive) return;
+                const word = span.getAttribute('data-word');
+                if (word) {
+                    selectedWordPreview.textContent = word;
+                    playSynthSound('hover');
+                } else {
+                    selectedWordPreview.textContent = span.textContent;
+                }
+            });
+            
+            span.addEventListener('click', () => {
+                if (!gameActive) return;
+                const word = span.getAttribute('data-word');
+                if (word) {
+                    handleGuess(word);
+                } else {
+                    playSynthSound('click');
+                    appendConsoleFeed(`> Error: Direct symbol node bypass inactive.`);
+                }
+            });
+        });
+    }
+
+    function appendConsoleFeed(text, type = '') {
+        const line = document.createElement('div');
+        line.className = `feed-line ${type}`;
+        line.textContent = text;
+        hackingConsoleFeed.appendChild(line);
+        hackingConsoleFeed.scrollTop = hackingConsoleFeed.scrollHeight;
+    }
+
+    function updateAttemptsUI() {
+        attemptsLeftContainer.innerHTML = 'ATTEMPTS: ';
+        for (let i = 0; i < 4; i++) {
+            const dot = document.createElement('span');
+            dot.className = `dot-attempt ${i >= attemptsLeft ? 'spent' : ''}`;
+            attemptsLeftContainer.appendChild(dot);
+        }
+    }
+
+    function handleGuess(word) {
+        if (word === secretKey) {
+            triggerHackingSuccess();
+        } else {
+            attemptsLeft--;
+            updateAttemptsUI();
+            
+            // Screen shake
+            const modalContent = document.querySelector('.hacking-modal-content');
+            if (modalContent) {
+                modalContent.classList.add('screenshake');
+                setTimeout(() => modalContent.classList.remove('screenshake'), 300);
+            }
+            
+            playSynthSound('error');
+            
+            // Compute Likeness
+            let likeness = 0;
+            const minLen = Math.min(word.length, secretKey.length);
+            for (let i = 0; i < minLen; i++) {
+                if (word[i] === secretKey[i]) likeness++;
+            }
+            
+            appendConsoleFeed(`> Guessed: ${word}`, 'feed-error');
+            appendConsoleFeed(`> ACCESS DENIED. (Likeness: ${likeness}/8)`, 'feed-error');
+            
+            if (attemptsLeft <= 0) {
+                triggerHackingLockout();
+            }
+        }
+    }
+
+    function triggerHackingSuccess() {
+        gameActive = false;
+        clearInterval(gameTimer);
+        playSynthSound('success');
+        
+        hackingModal.querySelector('.hacking-body').innerHTML = `
+            <div class="decrypt-success-panel">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h3 class="success-title">COGNITIVE CORE DECRYPTED</h3>
+                <p class="success-desc">Congratulations! Firewall layers successfully bypassed. Memory allocation state holds green. You have successfully established a trusted operational link.</p>
+                
+                <div class="classified-briefing-box">
+                    <div class="briefing-header">// ACCESSING CORE CLASS-A ASSETS</div>
+                    <p style="color:var(--color-text-main); font-size:0.85rem;">Engineer Profile Dossier: **Bhushan_Patil_CV.pdf** has been decrypted and made available for high-priority download.</p>
+                    <a href="https://raw.githubusercontent.com/Bhushanpatil001/portfolio/main/resume.pdf" download="Bhushan_Patil_CV.pdf" target="_blank" class="btn-cyber-primary briefing-btn" style="border: 1px solid var(--neon-green); color: #000;">
+                        <span class="btn-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, var(--neon-green), #16a34a); z-index: 1;"></span>
+                        <span class="btn-text" style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 0.6rem;">DOWNLOAD CLASSIFIED BRIEFING <i class="fas fa-download"></i></span>
+                    </a>
+                </div>
+            </div>
+        `;
+        hackTimerDisplay.textContent = 'DECRYPTION: COMPLETE';
+        hackTimerDisplay.style.color = 'var(--neon-green)';
+        hackTimerDisplay.style.textShadow = '0 0 10px var(--neon-green)';
+    }
+
+    function triggerHackingLockout() {
+        gameActive = false;
+        clearInterval(gameTimer);
+        playSynthSound('error');
+        
+        hackingModal.querySelector('.hacking-body').innerHTML = `
+            <div class="lockout-message">
+                <i class="fas fa-exclamation-triangle lockout-icon"></i>
+                <h3 class="lockout-title">COGNITIVE LOCKOUT PROTOCOL</h3>
+                <p class="lockout-desc">Firewall security threshold exceeded. Core systems frozen to prevent intrusion. Please abort network connection and initialize secondary node handshake.</p>
+                <button class="btn-cyber-primary" id="retry-hacking-btn" style="border: 1px solid var(--neon-red); background:rgba(239, 68, 68, 0.05);">
+                    <span class="btn-text" style="color:var(--neon-red); text-shadow:0 0 8px var(--neon-red);"><i class="fas fa-redo"></i> RE-ESTABLISH SAFE HANDSHAKE</span>
+                </button>
+            </div>
+        `;
+        
+        const retryBtn = document.getElementById('retry-hacking-btn');
+        if (retryBtn) {
+            retryBtn.addEventListener('click', () => {
+                restoreHackingBodyHTML();
+                startHackingGame();
+            });
+        }
+    }
+
+    function restoreHackingBodyHTML() {
+        hackingModal.querySelector('.hacking-body').innerHTML = `
+            <!-- Instruction Panel -->
+            <div class="hacking-instructions">
+                <span class="term-system">// ACCESS CODE LEVEL 4 ENCRYPTION DETECTED</span>
+                <p>Select the correct **CORE MATRIX KEY** from the memory array below. You have **4 attempts** to bypass the firewall, or a screen security lockout will occur.</p>
+            </div>
+            
+            <div class="hacking-workspace">
+                <!-- Left: Scrolling Memory Hex Array (Fallout Style) -->
+                <div class="hacking-hex-column" id="hacking-hex-log">
+                    <!-- Filled via JS -->
+                </div>
+                
+                <!-- Middle: Visual Code grid selection -->
+                <div class="hacking-choices-column">
+                    <div class="hacking-grid-wrapper" id="hacking-word-grid">
+                        <!-- Words and memory blocks filled via JS -->
+                    </div>
+                </div>
+                
+                <!-- Right: Firewall console log feed -->
+                <div class="hacking-console-column">
+                    <div class="console-title">// DIAGNOSTIC_UPLINK</div>
+                    <div class="console-feed" id="hacking-console-feed">
+                        <div class="feed-line">> Initializing cognitive scan...</div>
+                        <div class="feed-line">> Buffer loaded. Security protocols active.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input / Selection Row -->
+            <div class="hacking-input-row">
+                <span class="prompt-arrow">></span>
+                <span class="selected-word-preview" id="selected-word-preview">HOVER OVER NODE...</span>
+                <div class="attempts-indicator" id="attempts-left">
+                    ATTEMPTS: <span class="dot-attempt"></span><span class="dot-attempt"></span><span class="dot-attempt"></span><span class="dot-attempt"></span>
+                </div>
+            </div>
+        `;
+        
+        // Re-locate elements
+        attemptsLeftContainer = document.getElementById('attempts-left');
+        hackingWordGrid = document.getElementById('hacking-word-grid');
+        hackingHexLog = document.getElementById('hacking-hex-log');
+        hackingConsoleFeed = document.getElementById('hacking-console-feed');
+        selectedWordPreview = document.getElementById('selected-word-preview');
     }
 });

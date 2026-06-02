@@ -40,7 +40,7 @@
         "name": "AlgoScript Software Pvt. Ltd."
       },
       "telephone": "+91-8329143496",
-      "email": "1bushanpatil0117@gmail.com",
+      "email": "bhushanpatil0117@gmail.com",
       "url": "https://github.com/Bhushanpatil001",
       "sameAs": [
         "https://www.linkedin.com/in/bhushanpatil017"
@@ -63,6 +63,151 @@
     <!-- Custom Futuristic Cursor Follower -->
     <div class="cursor-glow" id="cursor-glow"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
+
+    <!-- Glowing Settings Panel Toggle -->
+    <div class="hud-control-toggle" id="hud-toggle" title="Initialize Control Panel">
+        <i class="fas fa-sliders-h"></i>
+        <span class="hud-toggle-pulse"></span>
+    </div>
+
+    <!-- Glassmorphic HUD Settings Control Panel -->
+    <div class="hud-settings-panel" id="hud-panel">
+        <div class="hud-panel-header">
+            <span class="hud-panel-title"><i class="fas fa-terminal"></i> CORE_CONTROL_DECK</span>
+            <button class="hud-panel-close" id="hud-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="hud-panel-body">
+            <!-- Sound Synth Section -->
+            <div class="hud-section">
+                <h4 class="hud-section-title">// SYSTEM_HAPTICS_AUDIO</h4>
+                <div class="hud-control-row">
+                    <span class="hud-label">HOLOGRAPHIC_SFX</span>
+                    <label class="cyber-switch">
+                        <input type="checkbox" id="sfx-toggle" checked>
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+                <div class="audio-wave-visualizer" id="wave-visualizer">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+
+            <!-- Theme Matrices -->
+            <div class="hud-section">
+                <h4 class="hud-section-title">// MATRIX_THEME_SELECT</h4>
+                <div class="theme-grid">
+                    <button class="theme-btn active" data-theme="default" style="--btn-color: var(--neon-cyan)">
+                        <span class="theme-dot"></span>CYBER_CYAN
+                    </button>
+                    <button class="theme-btn" data-theme="matrix" style="--btn-color: var(--neon-green)">
+                        <span class="theme-dot"></span>MATRIX_GREEN
+                    </button>
+                    <button class="theme-btn" data-theme="cyberpunk" style="--btn-color: #f59e0b">
+                        <span class="theme-dot"></span>CYBERPUNK
+                    </button>
+                </div>
+            </div>
+
+            <!-- Visual Matrix Switches -->
+            <div class="hud-section">
+                <h4 class="hud-section-title">// HUD_VISUAL_FILTERS</h4>
+                <div class="hud-control-row">
+                    <span class="hud-label">CRT_SCANLINES</span>
+                    <label class="cyber-switch">
+                        <input type="checkbox" id="scanlines-toggle" checked>
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+                <div class="hud-control-row">
+                    <span class="hud-label">SCREEN_NOISE</span>
+                    <label class="cyber-switch">
+                        <input type="checkbox" id="noise-toggle" checked>
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+                <div class="hud-control-row">
+                    <span class="hud-label">NEURAL_PARTICLES</span>
+                    <label class="cyber-switch">
+                        <input type="checkbox" id="particles-toggle" checked>
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Decryption Core shortcut -->
+            <div class="hud-section">
+                <button class="btn-cyber-primary hack-btn-hud" id="hud-decrypt-btn" style="width: 100%; border: 1px solid var(--neon-cyan); color: #000;">
+                    <span class="btn-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-blue)); z-index: 1;"></span>
+                    <span class="btn-text" style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 0.6rem;"><i class="fas fa-shield-alt"></i> DECRYPT COGNITIVE CORE</span>
+                </button>
+            </div>
+        </div>
+        <div class="hud-panel-footer">
+            <span class="system-status-indicator"><span class="pulse-dot"></span> DIAGNOSTICS ACTIVE</span>
+            <span class="system-build">SEC_DECK_v1.0.8</span>
+        </div>
+    </div>
+
+    <!-- Interactive Holographic Hacking Modal -->
+    <div class="hacking-modal" id="hacking-modal">
+        <div class="hacking-modal-content">
+            <div class="hacking-header">
+                <span class="hacking-title"><i class="fas fa-biohazard"></i> COGNITIVE_DECRYPTION_PROTOCOL</span>
+                <span class="hacking-timer" id="hack-timer">TIME_REMAINING: 45.00s</span>
+            </div>
+            
+            <div class="hacking-body">
+                <!-- Instruction Panel -->
+                <div class="hacking-instructions">
+                    <span class="term-system">// ACCESS CODE LEVEL 4 ENCRYPTION DETECTED</span>
+                    <p>Select the correct **CORE MATRIX KEY** from the memory array below. You have **4 attempts** to bypass the firewall, or a screen security lockout will occur.</p>
+                </div>
+                
+                <div class="hacking-workspace">
+                    <!-- Left: Scrolling Memory Hex Array (Fallout Style) -->
+                    <div class="hacking-hex-column" id="hacking-hex-log">
+                        <!-- Filled via JS -->
+                    </div>
+                    
+                    <!-- Middle: Visual Code grid selection -->
+                    <div class="hacking-choices-column">
+                        <div class="hacking-grid-wrapper" id="hacking-word-grid">
+                            <!-- Words and memory blocks filled via JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Firewall console log feed -->
+                    <div class="hacking-console-column">
+                        <div class="console-title">// DIAGNOSTIC_UPLINK</div>
+                        <div class="console-feed" id="hacking-console-feed">
+                            <div class="feed-line">> Initializing cognitive scan...</div>
+                            <div class="feed-line">> Buffer loaded. Security protocols active.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Input / Selection Row -->
+                <div class="hacking-input-row">
+                    <span class="prompt-arrow">></span>
+                    <span class="selected-word-preview" id="selected-word-preview">HOVER OVER NODE...</span>
+                    <div class="attempts-indicator" id="attempts-left">
+                        ATTEMPTS: <span class="dot-attempt"></span><span class="dot-attempt"></span><span class="dot-attempt"></span><span class="dot-attempt"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hacking-footer">
+                <button class="btn-cyber-secondary close-hacking-modal" id="close-hacking-btn">
+                    <span class="btn-bg"></span>
+                    <span class="btn-text">ABORT CONNECTION <i class="fas fa-power-off"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Navigation Header -->
     <nav class="glass-nav">
@@ -103,7 +248,7 @@
             <div class="drawer-socials">
                 <a href="https://github.com/Bhushanpatil001" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/bhushanpatil017" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="mailto:1bushanpatil0117@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="mailto:bhushanpatil0117@gmail.com"><i class="fas fa-envelope"></i></a>
             </div>
             <p>DIAGNOSTIC: SYSTEM ONLINE</p>
         </div>
@@ -543,11 +688,11 @@
                     <p class="comms-desc">Select an active node to route communication manually, or fill out the encrypted form.</p>
                     
                     <div class="contact-nodes">
-                        <a href="mailto:1bushanpatil0117@gmail.com" class="contact-node">
+                        <a href="mailto:bhushanpatil0117@gmail.com" class="contact-node">
                             <div class="node-icon"><i class="fas fa-envelope"></i></div>
                             <div class="node-details">
                                 <span class="node-label">SECURE_EMAIL</span>
-                                <span class="node-value">1bushanpatil0117@gmail.com</span>
+                                <span class="node-value">bhushanpatil0117@gmail.com</span>
                             </div>
                             <i class="fas fa-chevron-right node-arrow"></i>
                         </a>
@@ -642,7 +787,7 @@
             <div class="footer-social-links">
                 <a href="https://github.com/Bhushanpatil001" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/bhushanpatil017" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="mailto:1bushanpatil0117@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="mailto:bhushanpatil0117@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
         
